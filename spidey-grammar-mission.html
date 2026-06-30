@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spidey Grammar Mission — Right Form of Verbs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF7E9;
+    --cream-2:#FFEFD6;
+    --red:#FF6859;
+    --red-deep:#E64A3E;
+    --blue:#4FA8E0;
+    --blue-deep:#2D7FBE;
+    --yellow:#FFC93C;
+    --ink:#26224A;
+    --ink-soft:#534C82;
+    --paper:#FFFFFF;
+    --line:#EADFC8;
+    --radius:22px;
+    --shadow: 0 10px 28px rgba(38,34,74,0.10);
+    --shadow-lg: 0 18px 44px rgba(38,34,74,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Nunito',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',cursive;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- Web background texture ---------- */
+  .web-bg{
+    position:fixed; inset:0; z-index:-1; opacity:0.06; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 60px),
+      repeating-linear-gradient(-45deg, var(--ink) 0 1px, transparent 1px 60px);
+  }
+
+  /* ---------- Navbar ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,247,233,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:2px dashed var(--red);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto; padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:1.25rem;
+    color:var(--red-deep);
+  }
+  .brand .web-dot{
+    width:34px;height:34px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--red) 0%, var(--red-deep) 70%);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff; font-size:1.1rem; box-shadow: 0 4px 10px rgba(230,74,62,0.4);
+  }
+  .nav-links{
+    display:flex; gap:6px; list-style:none; margin:0; padding:0; flex-wrap:wrap;
+  }
+  .nav-links a{
+    text-decoration:none; font-weight:700; font-size:0.92rem;
+    padding:8px 14px; border-radius:999px; color:var(--ink-soft);
+    transition:all .2s ease; position:relative;
+  }
+  .nav-links a:hover{ background:var(--cream-2); color:var(--red-deep);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:760px){
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); flex-direction:column; padding:10px; gap:2px;
+      border-bottom:2px dashed var(--red);
+    }
+    .nav-links.open{display:flex;}
+    .nav-toggle{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:12px; border:2px solid var(--red);
+      background:var(--paper); font-size:1.2rem; cursor:pointer; color:var(--red-deep);
+    }
+  }
+
+  .container{max-width:1100px; margin:0 auto; padding:0 20px;}
+  section{padding:64px 0;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:1.02rem;
+    padding:14px 28px; border-radius:999px; border:none; cursor:pointer;
+    background:var(--red); color:#fff; text-decoration:none;
+    box-shadow: 0 8px 0 var(--red-deep), var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform:translateY(-3px); }
+  .btn:active{ transform:translateY(2px); box-shadow:0 4px 0 var(--red-deep); }
+  .btn.blue{ background:var(--blue); box-shadow:0 8px 0 var(--blue-deep), var(--shadow);}
+  .btn.yellow{ background:var(--yellow); color:var(--ink); box-shadow:0 8px 0 #D8A317, var(--shadow);}
+  .btn.ghost{
+    background:transparent; color:var(--red-deep); border:2px solid var(--red);
+    box-shadow:none; padding:11px 24px;
+  }
+  .btn.small{ padding:9px 18px; font-size:0.88rem; box-shadow:0 5px 0 var(--red-deep);}
+  .btn:disabled{opacity:0.45; cursor:not-allowed; transform:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:56px; position:relative; overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  @media(max-width:820px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--cream-2); color:var(--red-deep); font-weight:800;
+    font-size:0.82rem; padding:7px 16px; border-radius:999px; margin-bottom:18px;
+    border:2px solid var(--red);
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.3rem); line-height:1.08; margin:0 0 16px;
+    color:var(--ink);
+  }
+  .hero h1 .accent{ color:var(--red-deep); }
+  .hero p.sub{
+    font-size:1.12rem; color:var(--ink-soft); max-width:50ch; margin:0 0 28px; font-weight:600;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+
+  .spidey-frame{
+    position:relative; aspect-ratio:1/1; max-width:380px; margin:0 auto;
+    border-radius:50%;
+    background: radial-gradient(circle at 50% 40%, var(--cream-2), var(--cream) 70%);
+    border:6px dashed var(--red);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow-lg);
+  }
+  .spidey-frame .placeholder{
+    width:84%; height:84%; border-radius:50%;
+    background:repeating-linear-gradient(45deg, #fff 0 10px, #FFF0DE 10px 20px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--ink-soft); text-align:center; gap:10px; border:3px solid var(--blue);
+  }
+  .spidey-frame .placeholder .icon{font-size:2.6rem;}
+  .spidey-frame .placeholder small{font-weight:700; font-size:0.8rem; max-width:70%;}
+  .swing-badge{
+    position:absolute; top:-10px; right:0; background:var(--yellow);
+    padding:8px 14px; border-radius:14px; font-family:'Baloo 2'; font-weight:800;
+    font-size:0.85rem; transform:rotate(8deg); box-shadow:var(--shadow);
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 40px; }
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{ font-size:clamp(1.6rem,3.6vw,2.3rem); margin:0 0 10px; }
+  .section-head p{ color:var(--ink-soft); font-weight:600; margin:0; }
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:var(--paper); border-radius:var(--radius); padding:26px;
+    box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media(max-width:820px){ .grid-2,.grid-3{grid-template-columns:1fr;} }
+
+  .example-box{
+    background:var(--cream-2); border-radius:14px; padding:12px 16px; margin-top:10px;
+    font-weight:700; color:var(--ink);
+  }
+  .example-box .bn{ font-weight:600; color:var(--ink-soft); font-size:0.88rem; display:block; margin-top:4px;}
+
+  /* ---------- Rule cards ---------- */
+  .rule-card{
+    background:var(--paper); border-radius:var(--radius); padding:22px;
+    border:1px solid var(--line); box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .rule-tag{
+    width:38px;height:38px;border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:var(--blue); color:#fff; font-family:'Baloo 2'; font-weight:800;
+  }
+  .rule-card h3{ margin:4px 0 0; font-size:1.08rem; }
+  .rule-card p{ margin:0; color:var(--ink-soft); font-weight:600; font-size:0.93rem; }
+  .rules-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  @media(max-width:820px){.rules-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Spidey examples ---------- */
+  .spidey-ex{
+    background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color:#fff; border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .spidey-ex .qline{ font-weight:700; font-size:1.02rem; margin-bottom:8px;}
+  .spidey-ex .ans{
+    display:inline-block; background:rgba(255,255,255,0.18); padding:4px 12px;
+    border-radius:999px; font-family:'Baloo 2'; font-size:0.85rem; margin-top:6px;
+  }
+
+  /* ---------- Practice / Quiz ---------- */
+  .level-tabs{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:30px;
+  }
+  .level-tab{
+    font-family:'Baloo 2'; font-weight:700; padding:12px 22px; border-radius:999px;
+    border:2px solid var(--red); background:var(--paper); color:var(--red-deep); cursor:pointer;
+    transition:all .2s ease;
+  }
+  .level-tab.active, .level-tab:hover{ background:var(--red); color:#fff; }
+
+  .quiz-shell{
+    max-width:680px; margin:0 auto;
+  }
+  .progress-wrap{
+    background:var(--cream-2); border-radius:999px; height:14px; overflow:hidden; margin-bottom:8px;
+    border:1px solid var(--line);
+  }
+  .progress-bar{
+    height:100%; background:linear-gradient(90deg, var(--yellow), var(--red));
+    width:0%; transition:width .35s ease; border-radius:999px;
+  }
+  .progress-label{ text-align:center; font-weight:700; color:var(--ink-soft); font-size:0.86rem; margin-bottom:20px;}
+
+  .reminder-box{
+    background:var(--cream-2); border-left:5px solid var(--blue); border-radius:14px;
+    padding:14px 18px; margin-bottom:18px; font-weight:700; font-size:0.92rem; color:var(--ink-soft);
+  }
+
+  .question-card{
+    background:var(--paper); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow-lg);
+    border:1px solid var(--line);
+  }
+  .q-num{
+    font-family:'Baloo 2'; color:var(--red-deep); font-weight:800; font-size:0.9rem; margin-bottom:8px;
+  }
+  .q-text{ font-size:1.18rem; font-weight:700; margin-bottom:20px; line-height:1.5;}
+  .q-text .blank{
+    display:inline-block; min-width:64px; border-bottom:3px solid var(--red); margin:0 4px;
+  }
+  .options{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;
+  }
+  @media(max-width:520px){ .options{grid-template-columns:1fr;} }
+  .option{
+    background:var(--cream); border:2px solid var(--line); border-radius:14px;
+    padding:13px 16px; font-weight:700; cursor:pointer; text-align:left;
+    transition:all .15s ease; font-size:0.98rem;
+  }
+  .option:hover{ border-color:var(--blue); background:var(--cream-2); }
+  .option.selected{ border-color:var(--blue-deep); background:#E4F2FC; }
+  .option.correct{ border-color:#2FA86C; background:#E3F8EC; color:#1E7A4E; }
+  .option.wrong{ border-color:var(--red-deep); background:#FDE6E4; color:var(--red-deep); }
+
+  .q-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .hint-box{
+    margin-top:14px; background:#FFF4D8; border:1px dashed var(--yellow); border-radius:12px;
+    padding:12px 16px; font-weight:700; font-size:0.9rem; display:none;
+  }
+  .hint-box.show{display:block;}
+  .explain-box{
+    margin-top:14px; border-radius:12px; padding:14px 16px; font-weight:700; font-size:0.92rem;
+    display:none;
+  }
+  .explain-box.show{display:block;}
+  .explain-box.ok{ background:#E3F8EC; color:#1E7A4E; border:1px solid #2FA86C; }
+  .explain-box.no{ background:#FDE6E4; color:var(--red-deep); border:1px solid var(--red-deep); }
+
+  .quiz-result{
+    text-align:center; padding:40px 20px;
+  }
+  .quiz-result .score-circle{
+    width:140px; height:140px; border-radius:50%; margin:0 auto 20px;
+    background:conic-gradient(var(--red) calc(var(--pct,0)*1%), var(--cream-2) 0);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .quiz-result .score-circle span{
+    width:108px; height:108px; border-radius:50%; background:var(--paper);
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    font-family:'Baloo 2'; font-weight:800; font-size:1.5rem; color:var(--red-deep);
+  }
+  .quiz-result .score-circle span small{ font-size:0.7rem; color:var(--ink-soft); font-weight:700;}
+  .quiz-result h3{ margin:0 0 10px; font-size:1.4rem; }
+  .quiz-result p{ color:var(--ink-soft); font-weight:700; max-width:46ch; margin:0 auto 24px; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center; padding:40px 20px; color:var(--ink-soft); font-weight:700; font-size:0.9rem;
+    border-top:2px dashed var(--red); margin-top:20px;
+  }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--yellow); }
+  *:focus-visible{ outline:3px solid var(--blue-deep); outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="web-bg"></div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="brand"><span class="web-dot">🕸️</span> Spidey Grammar</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">🕷️ Spidey Grammar Mission</span>
+      <h1>Learn <span class="accent">Right Form of Verbs</span> with Spider-Man</h1>
+      <p class="sub">Easy HSC grammar practice with fun examples, simple rules, and friendly quizzes. Choose the correct verb and swing to success! 🕸️</p>
+      <div class="hero-actions">
+        <a href="#practice" class="btn">Start Learning 🚀</a>
+        <a href="#rules" class="btn ghost">See the Rules</a>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <span class="swing-badge">With great grammar comes great marks! 🏆</span>
+      <div class="spidey-frame">
+        <div class="placeholder">
+          <span class="icon">🕸️</span>
+          <strong>Spider-Man photo here</strong>
+          <small>(Add your Spider-Man image in this circle)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT IS RIGHT FORM -->
+<section class="container reveal" id="what">
+  <div class="section-head">
+    <span class="eyebrow">🔎 First Things First</span>
+    <h2>What is Right Form of Verb?</h2>
+    <p>Right form of verb means picking the correct shape of the verb — based on tense, subject, voice, or condition — so the sentence sounds right. Simple, na?</p>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">Subject changes the verb</h3>
+      <div class="example-box">He goes to school.<span class="bn">Singular subject (He) → verb + s/es</span></div>
+      <div class="example-box">They go to school.<span class="bn">Plural subject (They) → base verb</span></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Tense and condition change the verb</h3>
+      <div class="example-box">I have completed my work.<span class="bn">Present perfect → have/has + past participle</span></div>
+      <div class="example-box">If I were a bird, I would fly.<span class="bn">Imaginary condition → were + would + base verb</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="container reveal" id="rules">
+  <div class="section-head">
+    <span class="eyebrow">📘 Easy Rules Section</span>
+    <h2>10 Rules Every Spider-Hero Must Know</h2>
+    <p>Each card has one simple rule + example. Read one card a day — easy peasy!</p>
+  </div>
+  <div class="rules-grid" id="rulesGrid"></div>
+</section>
+
+<!-- SPIDEY EXAMPLES -->
+<section class="container reveal" id="examples">
+  <div class="section-head">
+    <span class="eyebrow">🕷️ Spider-Man Style Examples</span>
+    <h2>Grammar Meets Web-Slinging</h2>
+    <p>See how the rules work inside real Spidey sentences.</p>
+  </div>
+  <div class="grid-2" id="spideyExamples"></div>
+</section>
+
+<!-- PRACTICE / QUIZ -->
+<section class="container reveal" id="practice">
+  <div class="section-head">
+    <span class="eyebrow">🎯 Practice Zone</span>
+    <h2 id="quiz">Spidey Grammar Mission: Quiz Time!</h2>
+    <p>Pick your mission level, fill the web with the right verb, and save the sentence!</p>
+  </div>
+
+  <div class="level-tabs" id="levelTabs">
+    <button class="level-tab active" data-level="easy">🟢 Easy Mission</button>
+    <button class="level-tab" data-level="hsc">🔵 HSC Practice Mission</button>
+    <button class="level-tab" data-level="exam">🔴 Exam Challenge Mission</button>
+  </div>
+
+  <div class="quiz-shell">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-label" id="progressLabel">Question 1 of 15</div>
+
+    <div class="reminder-box" id="reminderBox">💡 Rule Reminder: Check the subject first — singular or plural?</div>
+
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>
+  🕸️ Made with web-fluid and grammar power, for HSC students of Bangladesh. Keep swinging towards better marks!
+</footer>
+
+<script>
+/* =========================================================
+   DATA
+========================================================= */
+const rules = [
+  {tag:"A", title:"Subject–Verb Agreement", text:"Singular subject takes singular verb. Plural subject takes plural verb.", ex1:"He plays football.", ex2:"They play football."},
+  {tag:"B", title:"Tense Clue Words", text:"yesterday → past · now → present continuous · already → present perfect · since/for → perfect continuous · tomorrow → future.", ex1:"He went home yesterday.", ex2:"She is reading now."},
+  {tag:"C", title:"Modal Verbs", text:"After can, could, may, might, must, should, would — use base form of verb.", ex1:"He can do it.", ex2:"You should study regularly."},
+  {tag:"D", title:"To + Base Verb", text:"After 'to' (infinitive), always use base form of the verb.", ex1:"I want to go.", ex2:"She likes to read."},
+  {tag:"E", title:"Preposition + Verb-ing", text:"After a preposition, the verb takes the -ing form (gerund).", ex1:"He is fond of reading.", ex2:"She is good at singing."},
+  {tag:"F", title:"Passive Voice Clue", text:"Use be verb (is/was/are/were) + past participle.", ex1:"The work is done.", ex2:"The letter was written."},
+  {tag:"G", title:"Conditional Sentences", text:"Type 1: will + base. Type 2: were + would + base. Type 3: had + would have + p.p.", ex1:"If he works hard, he will succeed.", ex2:"If I were rich, I would help the poor."},
+  {tag:"H", title:"Causative Verbs", text:"Make/have someone do something — use base verb or past participle.", ex1:"I made him do the work.", ex2:"I had the work done."},
+  {tag:"I", title:"Let, Make, Help", text:"After let, make, help — usually use base form of the verb.", ex1:"Let him go.", ex2:"He made me laugh."},
+  {tag:"J", title:"Gerund & Infinitive", text:"Some verbs are followed by -ing, some by 'to + verb'. Learn them by practice.", ex1:"I enjoy reading.", ex2:"I decided to study."},
+];
+
+const spideyExamples = [
+  {q:"Peter Parker usually ______ photos for the newspaper.", a:"takes", note:"Habitual action + singular subject 'Peter' → verb + s"},
+  {q:"Spider-Man can ______ from building to building.", a:"swing", note:"After modal 'can' → base verb"},
+  {q:"If Peter had studied more, he ______ better marks.", a:"would have got", note:"Conditional type 3 → would have + past participle"},
+  {q:"The villain was ______ by Spider-Man.", a:"caught", note:"Passive voice → was + past participle"},
+];
+
+// level => array of {q, options, answer, exp}
+// blank shown as ______
+const Q = {
+  easy:[
+    {q:"He usually ______ to college by bus.", options:["go","goes","went","going"], a:"goes", exp:"He is singular, so we use 'goes'."},
+    {q:"I have ______ my homework.", options:["do","did","done","doing"], a:"done", exp:"After 'have', we use the past participle."},
+    {q:"They ______ football every evening.", options:["play","plays","played","playing"], a:"play", exp:"'They' is plural, so the base verb is used."},
+    {q:"She ______ a letter now.", options:["write","writes","is writing","wrote"], a:"is writing", exp:"'Now' signals present continuous tense."},
+    {q:"You should ______ the truth.", options:["tell","tells","told","telling"], a:"tell", exp:"After modal verb 'should', use base verb."},
+    {q:"He is fond of ______ novels.", options:["read","reads","reading","to read"], a:"reading", exp:"After preposition 'of', verb takes -ing."},
+    {q:"I want ______ to the market.", options:["go","goes","to go","going"], a:"to go", exp:"After 'want', we use to + base verb."},
+    {q:"We ______ TV at the moment.", options:["watch","watches","are watching","watched"], a:"are watching", exp:"'At the moment' shows present continuous."},
+    {q:"She ______ to school every day.", options:["go","goes","going","gone"], a:"goes", exp:"Singular subject 'She' takes 'goes'."},
+    {q:"He can ______ this problem easily.", options:["solve","solves","solving","solved"], a:"solve", exp:"After modal 'can', base verb is used."},
+    {q:"They have already ______ the work.", options:["finish","finished","finishing","finishes"], a:"finished", exp:"'Already' signals present perfect → past participle."},
+    {q:"My father ______ in Dhaka since 2010.", options:["lives","lived","has lived","is living"], a:"has lived", exp:"'Since' with a time point needs present perfect."},
+    {q:"Please help me ______ this box.", options:["carry","carries","to carry","carrying"], a:"carry", exp:"After 'help', base verb is common."},
+    {q:"He ______ his bag every morning.", options:["pack","packs","packed","packing"], a:"packs", exp:"Singular subject + habitual action → verb + s."},
+    {q:"I decided ______ harder this term.", options:["study","studies","to study","studying"], a:"to study", exp:"After 'decide', use to + base verb."},
+  ],
+  hsc:[
+    {q:"If I ______ you, I would accept the offer.", options:["am","was","were","be"], a:"were", exp:"In an imaginary condition, we use 'were' for all subjects."},
+    {q:"The letter was ______ yesterday.", options:["write","wrote","written","writing"], a:"written", exp:"Passive voice uses be verb + past participle."},
+    {q:"I saw him ______ the road.", options:["cross","crossed","crosses","to cross"], a:"cross", exp:"After verbs of perception (saw), base verb is used."},
+    {q:"She has been ______ English for two years.", options:["learn","learns","learned","learning"], a:"learning", exp:"Present perfect continuous = has/have been + verb-ing."},
+    {q:"The patient died after the doctor ______.", options:["come","came","had come","coming"], a:"had come", exp:"The earlier of two past actions takes past perfect."},
+    {q:"No sooner had he reached the station than the train ______.", options:["leave","leaves","left","had left"], a:"left", exp:"After 'No sooner had', the next clause uses past indefinite."},
+    {q:"If he works hard, he ______ succeed.", options:["will","would","shall","may"], a:"will", exp:"Conditional type 1 uses 'will' in the main clause."},
+    {q:"I had the work ______ by him.", options:["do","did","done","doing"], a:"done", exp:"Causative 'had' + object + past participle."},
+    {q:"He made me ______ loudly.", options:["laugh","laughs","laughed","to laugh"], a:"laugh", exp:"After 'make' (causative), base verb is used."},
+    {q:"I enjoy ______ story books.", options:["read","reads","reading","to read"], a:"reading", exp:"'Enjoy' is always followed by the -ing form."},
+    {q:"By next year, he ______ his studies.", options:["completes","will complete","will have completed","completed"], a:"will have completed", exp:"Future perfect shows an action finished before a future time."},
+    {q:"She would have come if she ______ informed.", options:["was","were","had been","is"], a:"had been", exp:"Conditional type 3 uses 'had been' in the if-clause."},
+    {q:"It is time we ______ home.", options:["go","goes","went","going"], a:"went", exp:"'It is time' is followed by the past form for present/future meaning."},
+    {q:"He talks as if he ______ everything.", options:["knows","knew","know","known"], a:"knew", exp:"'As if' for an unreal present idea uses the past form."},
+    {q:"Hardly had I left when it ______ to rain.", options:["begin","began","begins","had begun"], a:"began", exp:"After 'Hardly had', the next clause uses past indefinite."},
+  ],
+  exam:[
+    {q:"The work ______ by tomorrow.", options:["will finish","will be finished","finishes","is finished"], a:"will be finished", exp:"Future passive = will be + past participle."},
+    {q:"I wish I ______ a bird.", options:["am","was","were","be"], a:"were", exp:"'Wish' for unreal present uses 'were' for all subjects."},
+    {q:"Scarcely had the train left when I ______ at the station.", options:["arrive","arrived","arrives","had arrived"], a:"arrived", exp:"After 'Scarcely had', the next clause is past indefinite."},
+    {q:"He is one of the boys who ______ punctual.", options:["is","are","was","be"], a:"are", exp:"'Who' refers to 'boys' (plural), so plural verb is used."},
+    {q:"The Padma Bridge ______ in 2022.", options:["opens","opened","was opened","has opened"], a:"was opened", exp:"A completed historical action is in passive past simple."},
+    {q:"Each of the students ______ a prize.", options:["receive","receives","received","receiving"], a:"receives", exp:"'Each of' takes a singular verb."},
+    {q:"Not only he but also his friends ______ invited.", options:["was","were","is","has been"], a:"were", exp:"With 'not only...but also', the verb agrees with the nearer subject (friends, plural)."},
+    {q:"I would rather you ______ now.", options:["leave","left","leaves","to leave"], a:"left", exp:"'Would rather' + subject uses the past form for present meaning."},
+    {q:"By the time he arrived, the train ______.", options:["leaves","left","had left","has left"], a:"had left", exp:"The earlier past action (leaving) takes past perfect."},
+    {q:"The Sundarbans ______ many rare animals.", options:["contain","contains","is containing","contained"], a:"contains", exp:"'The Sundarbans' is treated as a singular name here, so 'contains' is used."},
+    {q:"He is used to ______ early.", options:["wake","wakes","waking","woke"], a:"waking", exp:"'Used to' (habit) is followed by verb + ing."},
+    {q:"This is the best book I ______ ever read.", options:["have","had","has","having"], a:"have", exp:"Superlative + 'ever' usually takes present perfect — 'have'."},
+    {q:"The students, as well as their teacher, ______ present.", options:["was","were","is","are"], a:"was", exp:"'As well as' does not affect agreement; verb agrees with 'teacher' (singular)."},
+    {q:"If you had told me earlier, I ______ you.", options:["would help","would have helped","help","helped"], a:"would have helped", exp:"Conditional type 3 → would have + past participle in the main clause."},
+    {q:"Neither of the answers ______ correct.", options:["are","is","were","be"], a:"is", exp:"'Neither of' takes a singular verb."},
+  ]
+};
+
+const feedbackMsgs = [
+  {min:0, max:40, text:"Spidey says: Don't worry, practice makes perfect! 🕸️"},
+  {min:41, max:70, text:"Good swing! You are improving. 🕷️"},
+  {min:71, max:100, text:"Amazing! Grammar hero unlocked! 🏆"},
+];
+
+/* =========================================================
+   RENDER RULES
+========================================================= */
+const rulesGrid = document.getElementById('rulesGrid');
+rules.forEach(r=>{
+  const el = document.createElement('div');
+  el.className = 'rule-card';
+  el.innerHTML = `
+    <div class="rule-tag">${r.tag}</div>
+    <h3>${r.title}</h3>
+    <p>${r.text}</p>
+    <div class="example-box" style="font-size:0.92rem;">${r.ex1}</div>
+    <div class="example-box" style="font-size:0.92rem;">${r.ex2}</div>
+  `;
+  rulesGrid.appendChild(el);
+});
+
+/* =========================================================
+   RENDER SPIDEY EXAMPLES
+========================================================= */
+const spideyWrap = document.getElementById('spideyExamples');
+spideyExamples.forEach(s=>{
+  const el = document.createElement('div');
+  el.className = 'spidey-ex';
+  el.innerHTML = `
+    <div class="qline">🕸️ ${s.q}</div>
+    <span class="ans">Answer: ${s.a}</span>
+    <div style="margin-top:10px; font-size:0.88rem; opacity:0.9; font-weight:600;">${s.note}</div>
+  `;
+  spideyWrap.appendChild(el);
+});
+
+/* =========================================================
+   QUIZ LOGIC
+========================================================= */
+const quizArea = document.getElementById('quizArea');
+const progressBar = document.getElementById('progressBar');
+const progressLabel = document.getElementById('progressLabel');
+const reminderBox = document.getElementById('reminderBox');
+const levelTabs = document.querySelectorAll('.level-tab');
+
+const reminders = {
+  easy: "💡 Rule Reminder: Check the subject first — singular or plural?",
+  hsc: "💡 Rule Reminder: Look for clue words like 'since', 'already', or 'if' to spot the right tense.",
+  exam: "💡 Rule Reminder: Watch for tricky structures — passive voice, conditionals, and special agreement rules."
+};
+
+let state = {
+  level: 'easy',
+  index: 0,
+  score: 0,
+  selected: null,
+  answered: false,
+};
+
+function startLevel(level){
+  state = {level, index:0, score:0, selected:null, answered:false};
+  reminderBox.textContent = reminders[level];
+  renderQuestion();
+}
+
+function currentSet(){ return Q[state.level]; }
+
+function renderQuestion(){
+  const set = currentSet();
+  if(state.index >= set.length){
+    renderResult();
+    return;
+  }
+  const item = set[state.index];
+  progressBar.style.width = `${(state.index/set.length)*100}%`;
+  progressLabel.textContent = `Question ${state.index+1} of ${set.length}`;
+
+  const qHtml = item.q.replace('______', '<span class="blank">______</span>');
+
+  quizArea.innerHTML = `
+    <div class="question-card">
+      <div class="q-num">MISSION ${state.index+1} 🕷️</div>
+      <div class="q-text">${qHtml}</div>
+      <div class="options" id="optionsWrap">
+        ${item.options.map((opt,i)=>`<button class="option" data-opt="${opt}">${opt}</button>`).join('')}
+      </div>
+      <div class="q-actions">
+        <button class="btn small yellow" id="hintBtn">🔍 Show Hint</button>
+        <button class="btn small blue" id="submitBtn" disabled>Submit ✅</button>
+        <button class="btn small" id="nextBtn" style="display:none;">Next ➡️</button>
+      </div>
+      <div class="hint-box" id="hintBox">Hint: Think about ${hintFor(item)}.</div>
+      <div class="explain-box" id="explainBox"></div>
+    </div>
+  `;
+
+  let selected = null;
+  document.querySelectorAll('.option').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(state.answered) return;
+      document.querySelectorAll('.option').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selected = btn.dataset.opt;
+      document.getElementById('submitBtn').disabled = false;
+    });
+  });
+
+  document.getElementById('hintBtn').addEventListener('click', ()=>{
+    document.getElementById('hintBox').classList.toggle('show');
+  });
+
+  document.getElementById('submitBtn').addEventListener('click', ()=>{
+    if(!selected) return;
+    state.answered = true;
+    const correct = selected === item.a;
+    if(correct) state.score++;
+    document.querySelectorAll('.option').forEach(b=>{
+      b.style.cursor='default';
+      if(b.dataset.opt === item.a) b.classList.add('correct');
+      else if(b.dataset.opt === selected) b.classList.add('wrong');
+    });
+    const exBox = document.getElementById('explainBox');
+    exBox.classList.add('show', correct ? 'ok':'no');
+    exBox.innerHTML = `${correct ? '🎉 Correct! Great catch, hero!' : `❌ Not quite. Correct answer: <strong>${item.a}</strong>`}<br>📘 ${item.exp}`;
+    document.getElementById('submitBtn').style.display='none';
+    document.getElementById('nextBtn').style.display='inline-flex';
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    state.index++;
+    state.answered = false;
+    renderQuestion();
+  });
+}
+
+function hintFor(item){
+  const a = item.a.toLowerCase();
+  if(a.includes('been') || a.includes('have')) return "perfect tense clues (already, since, for)";
+  if(a.includes('were') || a.includes('would')) return "an imaginary or conditional situation";
+  if(a.endsWith('ing')) return "what comes right before the blank — a preposition or 'enjoy/used to' type verb";
+  if(a.includes('was ') || a.startsWith('was') || a.includes('written') || a.includes('done') || a.includes('caught') || a.includes('opened')) return "passive voice (be verb + past participle)";
+  return "the subject of the sentence — singular or plural?";
+}
+
+function renderResult(){
+  const set = currentSet();
+  const pct = Math.round((state.score/set.length)*100);
+  const fb = feedbackMsgs.find(f=>pct>=f.min && pct<=f.max) || feedbackMsgs[0];
+  progressBar.style.width = '100%';
+  progressLabel.textContent = `Mission complete!`;
+  quizArea.innerHTML = `
+    <div class="question-card quiz-result" style="--pct:${pct};">
+      <div class="score-circle"><span>${pct}%<small>SCORE</small></span></div>
+      <h3>${state.score} / ${set.length} correct</h3>
+      <p>${fb.text}</p>
+      <button class="btn" id="restartBtn">🔄 Restart Quiz</button>
+    </div>
+  `;
+  document.getElementById('restartBtn').addEventListener('click', ()=> startLevel(state.level));
+}
+
+levelTabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    levelTabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    startLevel(tab.dataset.level);
+  });
+});
+
+startLevel('easy');
+
+/* =========================================================
+   NAV + REVEAL
+========================================================= */
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('navLinks').classList.remove('open'));
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
